@@ -37,11 +37,11 @@ def main(args=None):
     # String message type
     msg = String()
 
-    i = 0
     while rclpy.ok(): 
       # Stage motors 19, 6, 5, 1, and 2 with units of deg
       msg.data = 'd 19 20.0 6 20.0 5 20.0 1 20.0 2 -20.0'
       publisher.publish(msg)
+      print(msg.data)
 
       # Send the staged values to the motors via the ros2ach bridge
       msg.data = 'post'
@@ -53,6 +53,7 @@ def main(args=None):
       # Stage motors 19, 6, 5, 1, and 2 with units of rad
       msg.data = 'r 19 -0.35 6 -0.35 5 -0.35 1 -0.35 2 0.35'
       publisher.publish(msg)
+      print(msg.data)
 
       # Send the staged values to the motors via the ros2ach bridge
       msg.data = 'post'
