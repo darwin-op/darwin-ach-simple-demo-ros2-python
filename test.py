@@ -24,10 +24,17 @@ from std_msgs.msg import String
 
 def main(args=None):
     rclpy.init(args=args)
+
+    # Set Node name
     node = rclpy.create_node('darwin_simple_demo_ros2_python_publisher')
+ 
+    # Publisher for the staged reference positions 
     publisher     = node.create_publisher(String, '/darwin/ref/position', 10)
+
+    # Publisher for posting the staged reference positions to the motors
     publisher_cmd = node.create_publisher(String, '/darwin/cmd', 10)
 
+    # String message type
     msg = String()
 
     i = 0
