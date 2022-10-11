@@ -24,7 +24,66 @@ def main(args=None):
     dar = da.DarwinAchRos(state=True)
 
     while True:
+      # Print IMU Acc Values
+      print("IMU: Acc = ",end='')
+      print(dar.imu_acc_x, end='') 
+      print(' ', end='')
+      print(dar.imu_acc_y, end='') 
+      print(' ', end='')
       print(dar.imu_acc_z) 
+
+      # Print IMU Gryo Values
+      print("IMU: Gyro = ",end='')
+      print(dar.imu_gyro_x, end='') 
+      print(' ', end='')
+      print(dar.imu_gyro_y, end='') 
+      print(' ', end='')
+      print(dar.imu_gyro_z) 
+
+      # Print FT Left
+      print("FT Left = ", end='')
+      print(dar.ft_left_x, end='')
+      print(' ', end='')
+      print(dar.ft_left_y, end='')
+      print(' ', end='')
+      print(dar.ft_left_lift, end='')
+      print(' ', end='')
+      print(dar.ft_left_lift_x, end='')
+      print(' ', end='')
+      print(dar.ft_left_lift_y)
+
+      # Print FT Right
+      print("FT Right = ", end='')
+      print(dar.ft_right_x, end='')
+      print(' ', end='')
+      print(dar.ft_right_y, end='')
+      print(' ', end='')
+      print(dar.ft_right_lift, end='')
+      print(' ', end='')
+      print(dar.ft_right_lift_x, end='')
+      print(' ', end='')
+      print(dar.ft_right_lift_y)
+
+      # Print Motor Position
+      print("Motor Position: ",end='')
+      print(dar.motor_position)
+
+      # Print Motor Velocity
+      print("Motor Velocity: ",end='')
+      print(dar.motor_velocity)
+
+      # Print Motor Torque
+      print("Motor Torque: ",end='')
+      print(dar.motor_torque)
+
+      # Print Motor Voltage
+      print("Motor Voltage: ",end='')
+      print(dar.motor_voltage)
+
+      # Print Motor Temperature
+      print("Motor Temperature: ",end='')
+      print(dar.motor_temperature)
+
       sleep(0.01)
 
     # Kill Node
