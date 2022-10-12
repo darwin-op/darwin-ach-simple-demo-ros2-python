@@ -18,27 +18,38 @@
 
 from time import sleep
 import darwin_ach as da
+import time
 
 def main(args=None):
     # Make Darwin Ach Ros Object
-    dar = da.DarwinAchRos(state=True)
+    dar = da.DarwinAchRos()
 
-    while True:
-      des = 0.0
-      mes = dar.imu_gyro_y
-      e   = des - mes
-      k = 10.
-      c = k*e
-      mot = (1,2)
-      if c > 0.6:
-        c = 0.6
-      if c < -0.6:
-        c = -0.6
-      pos = (c,-c)
-      vel = (100.0, 100.0)
+    tick = time.time()
+    tock = time.time()
+    
+    # desired setpoint in deg
+    des = 10.0    
+    ref = 0.0
+    L = 30.0
+    while True: 
+      tock = time.time()
+      dt = tock - tick
 
-      dar.setMot(mot, pos, vel)
-      print(e)
+      # Low Pass Filter
+      ref = (ref * (L-1.0) + des) / L
+      
+      # Change desired reference every 3 seconds
+      if dt > 3.0:
+        des = -des
+        tick = tock
+
+      # Set the position
+      mot = (  dar.RHP )
+      pos = (  ref    )
+      dar.setMotDeg(mot,pos)
+      print(pos)
+
+      # Sleep for 0.01 sec
       sleep(0.01)
 
     # Kill Node
