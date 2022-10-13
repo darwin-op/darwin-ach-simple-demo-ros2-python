@@ -1,4 +1,4 @@
-# Darwin-Ach Simple Demo for Ros2 + Python 3
+# Darwin-Ach Simple Demo for Ros2 + Python 3 (Setting Actuator Positions)
 
 This is a quick demonstration about the utilisation of the Darwin-Ach system to control the Darwin-OP using Ros2 and Python3 via the Ros2Ach bridge
 
@@ -144,7 +144,8 @@ rclpy.shutdown()
 ```
 
 
-# Darwin-Ach Simple Demo for Ros2 + Python 3 Using the darwin_ach.py class
+# Darwin-Ach Simple Demo for Ros2 + Python 3 Using the darwin_ach.py class (Setting Actuator Positions)
+
 
 This is a quick demonstration about the utilisation of the Darwin-Ach system to control the Darwin-OP using Ros2 and Python3 via the Ros2Ach bridge while using the darwin_ach.py class
 
@@ -212,7 +213,7 @@ sleep(3.0)
 dar.close()
 ```
 
-# Darwin-Ach Simple Demo for Ros2 + Python 3 Using the darwin_ach.py class and state feedback
+# Darwin-Ach Simple Demo for Ros2 + Python 3 Using the darwin_ach.py class and state feedback (Reading state values from the motors, FT sensors, and the IMU.
 
 This is a quick demonstration about the utilisation of the Darwin-Ach system to read the state values of the Darwin-OP using Ros2 and Python3 via the Ros2Ach bridge while using the darwin_ach.py class
 
@@ -246,7 +247,14 @@ from time import sleep
 import darwin_ach as da
 ```
 
-2. Print IMU Acc Values
+2. Make Darwin Ach Ros Object
+The "state=True" enables all of the sensors.  This slows down the control loop.  If a False or no arguement is given it will only update the IMU information.
+```
+dar = da.DarwinAchRos(state=True)
+```
+
+
+3. Print IMU Acc Values
 Each of the values are a float. Units: m/s^2
 ```
 print("IMU: Acc = ",end='')
@@ -257,7 +265,7 @@ print(' ', end='')
 print(dar.imu_acc_z)
 ```
 
-2. Print IMU Gryo Values
+4. Print IMU Gryo Values
 Each of the values are a float. Units: rad/s
 ```
 print("IMU: Gyro = ",end='')
@@ -268,7 +276,7 @@ print(' ', end='')
 print(dar.imu_gyro_z)
 ```
 
-3. Print FT Left
+5. Print FT Left
 Each of the values are a float.  Units for x and y values are in N.  Units for lift state is a boolean.
 ```
 print("FT Left = ", end='')
@@ -283,7 +291,7 @@ print(' ', end='')
 print(dar.ft_left_lift_y)
 ```
 
-4. Print FT Right
+6. Print FT Right
 Each of the values are a float.  Units for x and y values are in N.  Units for lift state is a boolean.
 ```
 print("FT Right = ", end='')
@@ -298,47 +306,47 @@ print(' ', end='')
 print(dar.ft_right_lift_y)
 ```
 
-5. Print Motor Position
+7. Print Motor Position
 This is an array of length number of motors + 1.  Each value in the array is the given state value and is denoted via a float.  Units: rad
 ```
 print("Motor Position: ",end='')
 print(dar.motor_position)
 ```
 
-6. Print Motor Velocity
+8. Print Motor Velocity
 This is an array of length number of motors + 1.  Each value in the array is the given state value and is denoted via a float.  Units: rad/sec
 ```
 print("Motor Velocity: ",end='')
 print(dar.motor_velocity)
 ```
 
-7. Print Motor Torque
+9. Print Motor Torque
 This is an array of length number of motors + 1.  Each value in the array is the given state value and is denoted via a float. Units: percent (0.0 to 1.0)
 ```
 print("Motor Torque: ",end='')
 print(dar.motor_torque)
 ```
 
-8. Print Motor Voltage
+10. Print Motor Voltage
 This is an array of length number of motors + 1.  Each value in the array is the given state value and is denoted via a float. Units: volts
 ```
 print("Motor Voltage: ",end='')
 print(dar.motor_voltage)
 ```
 
-9. Print Motor Temperature
+11. Print Motor Temperature
 This is an array of length number of motors + 1.  Each value in the array is the given state value and is denoted via a float. Units: Celsius
 ```
 print("Motor Temperature: ",end='')
 print(dar.motor_temperature)
 ```
 
-10. Sleep for 0.01 sec
+12. Sleep for 0.01 sec
 ```
       sleep(0.01)
 ```
 
-11. Kill Node
+13. Kill Node
 ```
     dar.close()
 ```
