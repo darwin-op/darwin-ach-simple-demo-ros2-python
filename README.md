@@ -144,11 +144,73 @@ rclpy.shutdown()
 ```
 
 
+# Darwin-Ach Simple Demo for Ros2 + Python 3 Using the darwin_ach.py class
 
+This is a quick demonstration about the utilisation of the Darwin-Ach system to control the Darwin-OP using Ros2 and Python3 via the Ros2Ach bridge while using the darwin_ach.py class
 
+## Step 0: Notes about setup
 
+If you setup the Darwin Lofaro Legacy system to auto start on the Darwin-OP and on the backpack comptuer then:
 
+* Enable the robot by pressing the start button in the "full body reference" mode.  The robot will become stiff.
+* Now you can skip to Step 3.
 
+Else:
+
+Follow the startup steps as defined in the previous example.
+
+## Step 1: Run the example
+
+This example will set the angle of the joints 19, 6, 5, 1, and 2 to 20.0, 20.0, 20.0, 20.0, and -20.0 def.  The example then sleeps for 3.0 seconds.  The system then sets the the same joints to -0.35, -0.35, -0.35, -0.35, and 0.35 rad respectively. The system will then sleep for another 3.0 seconds.  The loop will the restart and run until it is stopped. 
+
+Note: The darwin_ach.py class takes care of the message type and conversion.
+
+To run the example run the following:
+```
+$ python3 test_class_ref.py
+```
+
+## Step 2: Code Explained
+
+1. Import the headers
+```
+from time import sleep
+import darwin_ach as da
+```
+
+2. Make Darwin Ach Ros Object
+```
+dar = da.DarwinAchRos()
+```
+
+3. Stage and set motors 19, 6, 5, 1, and 2 with units of deg
+```
+mot = (  19,    6,    5,    1,     2)
+pos = (20.0, 20.0, 20.0, 20.0, -20.0)
+dar.setMotDeg(mot,pos)
+```
+
+4. Sleep for 3 seconds
+```
+sleep(3.0)
+```
+
+5. Stage and set motors 19, 6, 5, 1, and 2 with units of rad
+```
+mot = (   19,     6,     5,     1,    2)
+pos = (-0.35, -0.35, -0.35, -0.35, 0.35)
+dar.setMot(mot,pos)
+```
+
+6. Sleep for 3 seconds
+```
+sleep(3.0)
+```
+
+7. Kill Node
+```
+dar.close()
+```
 
 
 

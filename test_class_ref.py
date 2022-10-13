@@ -24,7 +24,7 @@ def main(args=None):
     dar = da.DarwinAchRos()
 
     while True: 
-      # Stage motors 19, 6, 5, 1, and 2 with units of deg
+      # Stage and set motors 19, 6, 5, 1, and 2 with units of deg
       mot = (  19,    6,    5,    1,     2)
       pos = (20.0, 20.0, 20.0, 20.0, -20.0)
       dar.setMotDeg(mot,pos)
@@ -33,7 +33,7 @@ def main(args=None):
       # Sleep for 3 seconds
       sleep(3.0)
 
-      # Stage motors 19, 6, 5, 1, and 2 with units of rad
+      # Stage and set motors 19, 6, 5, 1, and 2 with units of rad
       mot = (   19,     6,     5,     1,    2)
       pos = (-0.35, -0.35, -0.35, -0.35, 0.35)
       dar.setMot(mot,pos)
