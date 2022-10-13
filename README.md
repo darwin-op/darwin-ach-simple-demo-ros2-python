@@ -247,7 +247,7 @@ import darwin_ach as da
 ```
 
 2. Print IMU Acc Values
-Each of the values are a float
+Each of the values are a float. Units: m/s^2
 ```
 print("IMU: Acc = ",end='')
 print(dar.imu_acc_x, end='')
@@ -258,7 +258,7 @@ print(dar.imu_acc_z)
 ```
 
 2. Print IMU Gryo Values
-Each of the values are a float
+Each of the values are a float. Units: rad/s
 ```
 print("IMU: Gyro = ",end='')
 print(dar.imu_gyro_x, end='')
@@ -269,7 +269,7 @@ print(dar.imu_gyro_z)
 ```
 
 3. Print FT Left
-Each of the values are a float
+Each of the values are a float.  Units for x and y values are in N.  Units for lift state is a boolean.
 ```
 print("FT Left = ", end='')
 print(dar.ft_left_x, end='')
@@ -284,7 +284,7 @@ print(dar.ft_left_lift_y)
 ```
 
 4. Print FT Right
-Each of the values are a float
+Each of the values are a float.  Units for x and y values are in N.  Units for lift state is a boolean.
 ```
 print("FT Right = ", end='')
 print(dar.ft_right_x, end='')
