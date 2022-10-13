@@ -57,7 +57,7 @@ This will make an executable named "test"
 $ python3 test.py
 ```
 
-# Code Explained
+## Code Explained
 
 1. Import the primary Ros2 and Python headers
 ```
@@ -170,7 +170,7 @@ To run the example run the following:
 $ python3 test_class_ref.py
 ```
 
-## Step 2: Code Explained
+## Code Explained
 
 1. Import the headers
 ```
@@ -211,6 +211,138 @@ sleep(3.0)
 ```
 dar.close()
 ```
+
+# Darwin-Ach Simple Demo for Ros2 + Python 3 Using the darwin_ach.py class and state feedback
+
+This is a quick demonstration about the utilisation of the Darwin-Ach system to read the state values of the Darwin-OP using Ros2 and Python3 via the Ros2Ach bridge while using the darwin_ach.py class
+
+## Step 0: Notes about setup
+
+If you setup the Darwin Lofaro Legacy system to auto start on the Darwin-OP and on the backpack comptuer then:
+
+* Enable the robot by pressing the start button in the "full body reference" mode.  The robot will become stiff.
+* Now you can skip to Step 3.
+
+Else:
+
+Follow the startup steps as defined in the previous example.
+
+## Step 1: Run the example
+
+This example will read and print the state values of the Darwin using the darwin_ach.py class.  The IPC used is Ros2 thus this can be run on any computer on the same Ros2 network as the robot.  By default only the IMU feeds back data.  This example turns on full state feedback (i.e. right and left FT sensors and all joint state data).  Because of this the control rate is slower.
+
+To run the example run the following:
+```
+$ python3 test_class_state.py
+```
+
+Note: You can use ros to read the topics in your own custom software, however this is an example using the darwin_ach.py class.
+
+## Code Explained 
+
+1. Import headers
+```
+from time import sleep
+import darwin_ach as da
+```
+
+2. Print IMU Acc Values
+Each of the values are a float
+```
+print("IMU: Acc = ",end='')
+print(dar.imu_acc_x, end='')
+print(' ', end='')
+print(dar.imu_acc_y, end='')
+print(' ', end='')
+print(dar.imu_acc_z)
+```
+
+2. Print IMU Gryo Values
+Each of the values are a float
+```
+print("IMU: Gyro = ",end='')
+print(dar.imu_gyro_x, end='')
+print(' ', end='')
+print(dar.imu_gyro_y, end='')
+print(' ', end='')
+print(dar.imu_gyro_z)
+```
+
+3. Print FT Left
+Each of the values are a float
+```
+print("FT Left = ", end='')
+print(dar.ft_left_x, end='')
+print(' ', end='')
+print(dar.ft_left_y, end='')
+print(' ', end='')
+print(dar.ft_left_lift, end='')
+print(' ', end='')
+print(dar.ft_left_lift_x, end='')
+print(' ', end='')
+print(dar.ft_left_lift_y)
+```
+
+4. Print FT Right
+Each of the values are a float
+```
+print("FT Right = ", end='')
+print(dar.ft_right_x, end='')
+print(' ', end='')
+print(dar.ft_right_y, end='')
+print(' ', end='')
+print(dar.ft_right_lift, end='')
+print(' ', end='')
+print(dar.ft_right_lift_x, end='')
+print(' ', end='')
+print(dar.ft_right_lift_y)
+```
+
+5. Print Motor Position
+This is an array of length number of motors + 1.  Each value in the array is the given state value and is denoted via a float.  Units: rad
+```
+print("Motor Position: ",end='')
+print(dar.motor_position)
+```
+
+6. Print Motor Velocity
+This is an array of length number of motors + 1.  Each value in the array is the given state value and is denoted via a float.  Units: rad/sec
+```
+print("Motor Velocity: ",end='')
+print(dar.motor_velocity)
+```
+
+7. Print Motor Torque
+This is an array of length number of motors + 1.  Each value in the array is the given state value and is denoted via a float. Units: percent (0.0 to 1.0)
+```
+print("Motor Torque: ",end='')
+print(dar.motor_torque)
+```
+
+8. Print Motor Voltage
+This is an array of length number of motors + 1.  Each value in the array is the given state value and is denoted via a float. Units: volts
+```
+print("Motor Voltage: ",end='')
+print(dar.motor_voltage)
+```
+
+9. Print Motor Temperature
+This is an array of length number of motors + 1.  Each value in the array is the given state value and is denoted via a float. Units: Celsius
+```
+print("Motor Temperature: ",end='')
+print(dar.motor_temperature)
+```
+
+10. Sleep for 0.01 sec
+```
+      sleep(0.01)
+```
+
+11. Kill Node
+```
+    dar.close()
+```
+
 
 
 
